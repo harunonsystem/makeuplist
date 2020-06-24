@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Create extends StatefulWidget {
   @override
@@ -7,7 +10,31 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   final TextEditingController eCtrl = new TextEditingController();
-  List<String> litems = [];
+  //Map<String, String> litems = {};
+  
+  // https://pub.dev/documentation/image_picker/latest/ #ImagePicker
+  File _image;
+  final picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future open_camera() async {
+    final PickedFile = await picker.getImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(PickedFile.path);
+    });
+  }
+
+  void open_gallery() async {
+    final PickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(PickedFile.path);
+    });
+  }
+
   @override
   Widget build(BuildContext ctxt) {
     return new Scaffold(
@@ -17,51 +44,74 @@ class _CreateState extends State<Create> {
           actions: <Widget>[
             FlatButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.edit, color: Colors.white,),
-                label: const Text('Edit', style: TextStyle(color: Colors.white),)),
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Edit',
+                  style: TextStyle(color: Colors.white),
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: addPanel,
         ),
         body: new Column(
           children: <Widget>[
-            new TextField(
-              controller: eCtrl,
-              onSubmitted: (text) {
-                litems.add(text);
-                eCtrl.clear();
-                setState(() {});
-              },
-            ),
+            new TextField(),
             new Expanded(
               child: Center(
-                  child: new ListView.separated(
-                separatorBuilder: (BuildContext ctxt, int index) => Divider(
-                  color: Colors.pink,
-                ),
-                padding: EdgeInsets.all(10.0),
-                itemCount: litems.length,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  return new Center(
                       child: Card(
-                          shape: Border(
-                            top: BorderSide(color: Colors.red),
-                            left: BorderSide(color: Colors.blue),
-                            right: BorderSide(color: Colors.yellow),
-                            bottom: BorderSide(color: Colors.green),
-                          ),
-                          child: ListTile(
-                              title: Center(
-                                  child: Text(
-                            litems[index],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )))));
-                },
-              )),
-            ),
-          ],
-        ));
+                    child: _image == null ? Text('no data') : Image.file(_image),
+                  )),
+                
+              )]),
+          
+        );
+  }
+
+  void addPanel() async {
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: TextFormField(),
+              content: new SingleChildScrollView(
+                  child: new Row(children: <Widget>[
+                /*
+                Container(
+                  child: _imageFile == null
+                      ? Text("Waiting a minites...")
+                      : Image.file(),
+                ),*/
+                GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.camera_alt),
+                        SizedBox(width: 5),
+                        const Text('camera')
+                      ],
+                    ),
+                    onTap: () async {
+                      open_camera();
+                    }),
+                SizedBox(
+                  width: 20,
+                ),
+                GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.photo),
+                        SizedBox(width: 5),
+                        const Text('gallery')
+                      ],
+                    ),
+                    onTap: () async {
+                      open_gallery();
+                    }),
+              ])));
+        });
   }
 }

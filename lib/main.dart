@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makeup/card_create.dart';
 import 'package:makeup/card_default.dart';
 import 'package:makeup/card_detail.dart';
 import 'package:makeup/home_page.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       home: Splash(),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
+        '/create': (BuildContext context) => Create() ,
         '/detail': (BuildContext context) => CardDetail(),
         '/default': (BuildContext context) => CardDefault(),
       },

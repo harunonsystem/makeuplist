@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   splashscreen: ^1.2.0
+  image_picker: ^0.6.7+2
+  flutter_plugin_android_lifecycle: ^1.0.5
 
 dev_dependencies:
   flutter_test:
