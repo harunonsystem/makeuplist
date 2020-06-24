@@ -1,4 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
+
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  Widget build(BuildContext context) {
+    return new SplashScreen(
+      seconds: 3,
+      navigateAfterSeconds: new HomePage(),
+      title: const Text('Welcome to MakeupList', style: TextStyle(color: Colors.pinkAccent, fontSize: 24.0),),
+      image:  Image.asset('assets/icon/eye-makeup.png'),
+      backgroundColor: Colors.white,
+      photoSize: 180.0,
+      loaderColor: Colors.pinkAccent,
+    );
+  }
+}
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,6 +43,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('MakeupList'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

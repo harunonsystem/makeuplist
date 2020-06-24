@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.light(),
-      home: HomePage(),
+      home: Splash(),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/detail': (BuildContext context) => CardDetail(),
