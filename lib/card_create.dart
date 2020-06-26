@@ -9,9 +9,9 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
-  final TextEditingController eCtrl = new TextEditingController();
   //Map<String, String> litems = {};
-  
+  List<String> items = [];
+  TextEditingController title = new TextEditingController();
   // https://pub.dev/documentation/image_picker/latest/ #ImagePicker
   File _image;
   final picker = ImagePicker();
@@ -21,7 +21,7 @@ class _CreateState extends State<Create> {
     super.initState();
   }
 
-  Future open_camera() async {
+  void open_camera() async {
     final PickedFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
       _image = File(PickedFile.path);
@@ -38,38 +38,36 @@ class _CreateState extends State<Create> {
   @override
   Widget build(BuildContext ctxt) {
     return new Scaffold(
-        appBar: AppBar(
-          title: const Text('create test'),
-          centerTitle: true,
-          actions: <Widget>[
-            FlatButton.icon(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                label: const Text(
-                  'Edit',
-                  style: TextStyle(color: Colors.white),
-                )),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: addPanel,
-        ),
-        body: new Column(
-          children: <Widget>[
-            new TextField(),
-            new Expanded(
-              child: Center(
-                      child: Card(
-                    child: _image == null ? Text('no data') : Image.file(_image),
-                  )),
-                
-              )]),
-          
-        );
+      appBar: AppBar(
+        title: const Text('create test'),
+        centerTitle: true,
+        actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () {},
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+              label: const Text(
+                'Edit',
+                style: TextStyle(color: Colors.white),
+              )),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: addPanel,
+      ),
+      body: new Column(children: <Widget>[
+        new Expanded(
+          child: Center(
+            child: _image == null
+                ? Text('no data')
+                : Image.file(_image),
+          ),
+        )
+      ]),
+    );
   }
 
   void addPanel() async {
@@ -77,9 +75,18 @@ class _CreateState extends State<Create> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              title: TextFormField(),
+              title: TextFormField(
+                  controller: title,
+                  onSaved: (text) {
+                    items.add(text);
+                    title.clear();
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'input title...',
+                  )),
               content: new SingleChildScrollView(
-                  child: new Row(children: <Widget>[
+                  child: new Column(children: <Widget>[
                 /*
                 Container(
                   child: _imageFile == null
@@ -111,6 +118,22 @@ class _CreateState extends State<Create> {
                     onTap: () async {
                       open_gallery();
                     }),
+                FlatButton.icon(
+                  icon: Icon(
+                    Icons.check,
+                    color: Colors.white,
+                  ),
+                  color: Colors.pinkAccent,
+                  label: const Text(
+                    'OK',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      Image.file(_image);
+                    });
+                  },
+                ),
               ])));
         });
   }

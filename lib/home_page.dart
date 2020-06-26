@@ -12,8 +12,11 @@ class _SplashState extends State<Splash> {
     return new SplashScreen(
       seconds: 3,
       navigateAfterSeconds: new HomePage(),
-      title: const Text('Welcome to MakeupList', style: TextStyle(color: Colors.pinkAccent, fontSize: 24.0),),
-      image:  Image.asset('assets/icon/eye-makeup.png'),
+      title: const Text(
+        'Welcome to MakeupList',
+        style: TextStyle(color: Colors.pinkAccent, fontSize: 24.0),
+      ),
+      image: Image.asset('assets/icon/eye-makeup.png'),
       backgroundColor: Colors.white,
       photoSize: 180.0,
       loaderColor: Colors.pinkAccent,
@@ -27,16 +30,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int count = 0;
-  List<String> listdata = ['pien🥺', 'oko🥵', 'kusakoetemori🌲'];
-
-  String get showPien => listdata[count];
-
-  void pienchanged() {
-    count++;
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +51,7 @@ class _HomePageState extends State<HomePage> {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
+                elevation: 10,
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -69,19 +63,27 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height / 6,
                   child: Column(
                     children: <Widget>[
-                       Padding(
-                         padding: const EdgeInsets.all(3.0),
-                         child: ListTile(
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListTile(
                           leading: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 44, maxWidth: 44, minHeight: 44, minWidth: 44),
-                            child: Image.asset('assets/icon/makeup.png', fit: BoxFit.cover, color: Colors.white,),
+                            constraints: BoxConstraints(
+                                maxHeight: 44,
+                                maxWidth: 44,
+                                minHeight: 44,
+                                minWidth: 44),
+                            child: Image.asset(
+                              'assets/icon/makeup.png',
+                              fit: BoxFit.cover,
+                              color: Colors.white,
+                            ),
                           ),
                           title: const Text('list1🥺',
-                              style:
-                                  TextStyle(fontSize: 24.0, color: Colors.white)),
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.white)),
+                        ),
                       ),
-                       ),
-                       /*
+                      /*
                       ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
@@ -125,17 +127,25 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height / 6,
                   child: Column(
                     children: <Widget>[
-                       Padding(
-                         padding: const EdgeInsets.all(3.0),
-                         child: ListTile(
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListTile(
                           leading: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 44, maxWidth: 44, minHeight: 44, minWidth: 44),
-                            child: Image.asset('assets/icon/makeup.png', fit: BoxFit.cover, color: Colors.white,),
+                            constraints: BoxConstraints(
+                                maxHeight: 44,
+                                maxWidth: 44,
+                                minHeight: 44,
+                                minWidth: 44),
+                            child: Image.asset(
+                              'assets/icon/makeup.png',
+                              fit: BoxFit.cover,
+                              color: Colors.white,
+                            ),
                           ),
                           title: const Text('list2🥺',
-                              style:
-                                  TextStyle(fontSize: 24.0, color: Colors.white)),
-                      ),
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.white)),
+                        ),
                       ),
                       ButtonTheme.bar(
                         child: ButtonBar(
@@ -177,18 +187,26 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height / 6,
                   child: Column(
                     children: <Widget>[
-                       Padding(
-                         padding: const EdgeInsets.all(3.0),
-                         child: ListTile(
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListTile(
                           leading: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 44, maxWidth: 44, minHeight: 44, minWidth: 44),
-                            child: Image.asset('assets/icon/makeup.png', fit: BoxFit.cover, color: Colors.white,),
+                            constraints: BoxConstraints(
+                                maxHeight: 44,
+                                maxWidth: 44,
+                                minHeight: 44,
+                                minWidth: 44),
+                            child: Image.asset(
+                              'assets/icon/makeup.png',
+                              fit: BoxFit.cover,
+                              color: Colors.white,
+                            ),
                           ),
                           title: const Text('list3🥺',
-                              style:
-                                  TextStyle(fontSize: 24.0, color: Colors.white)),
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.white)),
+                        ),
                       ),
-                       ),
                       ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
@@ -207,6 +225,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            SizedBox(height: 12.0,),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).pushNamed('/create');
@@ -226,18 +245,26 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height / 6,
                   child: Column(
                     children: <Widget>[
-                       Padding(
-                         padding: const EdgeInsets.all(3.0),
-                         child: ListTile(
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListTile(
                           leading: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 44, maxWidth: 44, minHeight: 44, minWidth: 44),
-                            child: Image.asset('assets/icon/makeup.png', fit: BoxFit.cover, color: Colors.white,),
+                            constraints: BoxConstraints(
+                                maxHeight: 44,
+                                maxWidth: 44,
+                                minHeight: 44,
+                                minWidth: 44),
+                            child: Image.asset(
+                              'assets/icon/makeup.png',
+                              fit: BoxFit.cover,
+                              color: Colors.white,
+                            ),
                           ),
                           title: const Text('create',
-                              style:
-                                  TextStyle(fontSize: 24.0, color: Colors.white)),
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.white)),
+                        ),
                       ),
-                       ),
                       ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
@@ -256,13 +283,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Container(child: Text(showPien)),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: pienchanged,
-        child: Icon(Icons.add),
       ),
     );
   }
