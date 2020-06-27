@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 icon
 https://www.flaticon.com/free-icon/cosmetics_130298
 https://www.flaticon.com/free-icon/cosmetics_3081880
+
+google signin && firebase auth
+https://blog.codemagic.io/firebase-authentication-google-sign-in-using-flutter/

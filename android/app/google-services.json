@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:381622164985:android:776a2c31d9a3f946ebf128",
+        "mobilesdk_app_id": "1:381622164985:android:410c2e51d45a5f6cebf128",
         "android_client_info": {
-          "package_name": "com.example.makeup"
+          "package_name": "com.example.makeuplist"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "381622164985-4c7k5jg2pt0m4usc3dbdbq8n7h0c7qke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.makeuplist",
+            "certificate_hash": "9f7c2b7f911ad52804085a018722db9633c8f322"
+          }
+        },
         {
           "client_id": "381622164985-8sv3v17q7j74p2shuf0sc9d3p26fcj29.apps.googleusercontent.com",
           "client_type": 3
@@ -30,6 +38,13 @@
             {
               "client_id": "381622164985-8sv3v17q7j74p2shuf0sc9d3p26fcj29.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "381622164985-nmd7b0j6ci1v97hmq0tllb2oo356ius3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.makeuplist"
+              }
             }
           ]
         }
