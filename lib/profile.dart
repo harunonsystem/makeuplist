@@ -5,7 +5,7 @@ import 'package:makeup/sign_in.dart';
 
 class Profile extends StatefulWidget {
   final FirebaseUser user;
-  Profile({Key key, this.user}): super(key: key);
+  Profile({Key key, this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -15,6 +15,13 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          name,
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -35,17 +42,15 @@ class _ProfileState extends State<Profile> {
               ),
               Text(
                 name,
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 20.0, color: Colors.white),
               ),
               Text(
                 email,
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 20.0, color: Colors.white),
               ),
-              SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               RaisedButton(
                 onPressed: () {
                   signOutGoogle();
@@ -57,7 +62,10 @@ class _ProfileState extends State<Profile> {
                 color: Colors.pink,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Text('sign out', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'sign out',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
