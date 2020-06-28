@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Create extends StatefulWidget {
+class CardCreate extends StatefulWidget {
   @override
   _CreateState createState() => _CreateState();
 }
 
-class _CreateState extends State<Create> {
+class _CreateState extends State<CardCreate> {
   //Map<String, String> litems = {};
   List<String> items = [];
   TextEditingController title = new TextEditingController();
