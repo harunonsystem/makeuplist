@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class CardDefault extends StatefulWidget {
   @override
@@ -13,54 +14,62 @@ class PlaceItem {
   PlaceItem(this.isExpanded, this.name, this.image);
 }
 
-ExpansionPanel _createPanel(PlaceItem place) {
-  return ExpansionPanel(
-    headerBuilder: (BuildContext context, bool isExpanded) {
-      return Container(
-        padding: EdgeInsets.all(8.0),
-        child: Row(
-          children: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 10.0),
-                child: IconButton(
-                  icon: Icon(Icons.check),
-                  onPressed: () {},
-                )),
-            Text(
-              place.name,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ],
-        ),
-      );
-    },
-    body: GestureDetector(
-      onTap: () {
-        return Image.asset(
-          'assets/' + place.image,
-          fit: BoxFit.cover,
+class _CardDefaultState extends State<CardDefault> {
+  var _placeList = new List<PlaceItem>();
+
+  ExpansionPanel _createPanel(PlaceItem place) {
+    return ExpansionPanel(
+      canTapOnHeader: true,
+      headerBuilder: (BuildContext context, bool isExpanded) {
+        return Container(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 10.0),
+                  child: IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: () {
+                      // https://flutter-widget.live/widgets/ExpansionPanelList
+                      setState(() {
+                        _placeList
+                            .removeWhere((currentItem) => place == currentItem);
+                      });
+                    },
+                  )),
+              Text(
+                place.name,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
         );
       },
-      child: Image.asset(
-        'assets/' + place.image,
-        fit: BoxFit.fill,
+      body: GestureDetector(
+        onTap: () {
+          return Image.asset(
+            'assets/' + place.image,
+            fit: BoxFit.cover,
+          );
+        },
+        child: Image.asset(
+          'assets/' + place.image,
+          fit: BoxFit.fill,
+        ),
       ),
-    ),
-    isExpanded: place.isExpanded,
-  );
-}
+      isExpanded: place.isExpanded,
+    );
+  }
 
-class _CardDefaultState extends State<CardDefault> {
-  List<String> defitems = [
-    'item',
-    'item2',
-    'item3',
-    'item4',
-  ];
-  var _placeList = new List<PlaceItem>();
+  // List<String> defitems = [
+  //   'item',
+  //   'item2',
+  //   'item3',
+  //   'item4',
+  // ];
 
   @override
   void initState() {
@@ -72,7 +81,7 @@ class _CardDefaultState extends State<CardDefault> {
     _placeList.add(PlaceItem(true, 'base', 'makeup/base01.png'));
     _placeList.add(PlaceItem(true, 'fandation', 'makeup/fandation.png'));
     _placeList.add(PlaceItem(true, 'powder1', 'makeup/powder01.png'));
-    _placeList.add(PlaceItem(true, 'powder2', 'makeup/powder02.png'));
+    // _placeList.add(PlaceItem(true, 'powder2', 'makeup/powder02.png'));
     _placeList.add(PlaceItem(true, 'eye1', 'makeup/clio_parette.png'));
     _placeList.add(PlaceItem(true, 'eye2', 'makeup/etude_jewel.png'));
     _placeList.add(PlaceItem(true, 'eye3', 'makeup/eye01.png'));
@@ -134,8 +143,15 @@ class _CardDefaultState extends State<CardDefault> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('list1'),
+          title: Text('list1🥺'),
           centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Colors.blueAccent, Colors.pinkAccent])),
+          ),
           actions: <Widget>[
             FlatButton.icon(
                 onPressed: () {},
