@@ -18,9 +18,9 @@ Future<String> signInWithGoogle() async {
     accessToken: googleSignInAuthentication.accessToken,
     idToken: googleSignInAuthentication.idToken,
   );
-  final AuthResult authResult = await _auth.signInWithCredential(credential);
-  final FirebaseUser user = authResult.user;
-  //final FirebaseUser user = await _auth.signInWithCredential(credential);
+  // final AuthResult authResult = await _auth.signInWithCredential(credential);
+  // final FirebaseUser user = authResult.user;
+  final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
 
   // Checking if email and name is null
   assert(user.email != null);
@@ -36,7 +36,8 @@ Future<String> signInWithGoogle() async {
   return 'signInWithGoogle succeeded: $user';
 }
 
-void signOutGoogle() async {
+@override
+Future<void> signOutGoogle() async {
   await googleSignIn.signOut();
 
   print("User Sign Out");

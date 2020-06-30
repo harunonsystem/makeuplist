@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:makeup/home_page.dart';
 import 'package:makeup/profile.dart';
-import 'package:makeup/sign_in.dart';
-
+import 'auth.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
