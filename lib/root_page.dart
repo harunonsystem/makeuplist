@@ -16,10 +16,13 @@ class RootPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           FirebaseUser user = snapshot.data;
-          // print('user:' + user.uid);
-          if (user == null) {
+          print('user:' + user.uid);
+          if (user != null) {
+            return Profile(user: user);
+          } else {
+            print('user:' + user.displayName);
             return LoginPage();
-          } return Profile();
+          }
         } else {
           return Scaffold(
             body: Center(
