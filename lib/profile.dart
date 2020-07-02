@@ -22,6 +22,13 @@ class _ProfileState extends State<Profile> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[Colors.blueAccent, Colors.pinkAccent])),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
