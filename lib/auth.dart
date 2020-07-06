@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -22,6 +23,11 @@ Future<String> signInWithGoogle() async {
   // final FirebaseUser user = authResult.user;
   final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
 
+  //add firestore
+  FirebaseUser signedUser = user;
+  if(signedUser != null ){
+    Firestore.instance.collection('users').document(signedUser.uid).setData({'name':name, 'email': email, 'imgUrl': imageUrl });
+  }
   // Checking if email and name is null
   assert(user.email != null);
   assert(user.displayName != null);
