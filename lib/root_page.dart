@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:makeup/auth.dart';
-import 'package:makeup/card_create.dart';
 import 'package:makeup/login_page.dart';
 import 'package:makeup/profile.dart';
 
@@ -34,42 +32,3 @@ class RootPage extends StatelessWidget {
     );
   }
 }
-
-// @override
-// void initState() {
-//   FirebaseAuth.instance.currentUser().then((currentUser) => {
-//         if (currentUser == null)
-//           {Navigator.pushReplacementNamed(context, '/signIn')}
-//         else
-//           {
-//             Firestore.instance
-//                 .collection("users")
-//                 .document(currentUser.uid)
-//                 .get()
-//                 .then((DocumentSnapshot result) => Navigator.pushReplacement(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => Profile(
-//                         uid: currentUser.uid,
-//                       ),
-//                     )))
-//                 .catchError((err) => print(err))
-//           }
-//       });
-//   super.initState();
-// }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     appBar: AppBar(
-//       title: Text('name'),
-//     ),
-//     body: Center(
-//         child: Container(
-//       child: CircularProgressIndicator(
-//         backgroundColor: Colors.pink,
-//       ),
-//     )),
-//   );
-// }

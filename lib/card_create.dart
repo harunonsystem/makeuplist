@@ -21,17 +21,17 @@ class _CreateState extends State<CardCreate> {
     super.initState();
   }
 
-  void open_camera() async {
-    final PickedFile = await picker.getImage(source: ImageSource.camera);
+  void openCamera() async {
+    final pickerdFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
-      _image = File(PickedFile.path);
+      _image = File(pickerdFile.path);
     });
   }
 
-  void open_gallery() async {
-    final PickedFile = await picker.getImage(source: ImageSource.gallery);
+  void openGallery() async {
+    final pickerdFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
-      _image = File(PickedFile.path);
+      _image = File(pickerdFile.path);
     });
   }
 
@@ -102,7 +102,7 @@ class _CreateState extends State<CardCreate> {
                       ],
                     ),
                     onTap: () async {
-                      open_camera();
+                      openCamera();
                     }),
                 SizedBox(
                   width: 20,
@@ -116,7 +116,7 @@ class _CreateState extends State<CardCreate> {
                       ],
                     ),
                     onTap: () async {
-                      open_gallery();
+                      openGallery();
                     }),
                 FlatButton.icon(
                   icon: Icon(

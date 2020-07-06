@@ -35,11 +35,11 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 10.0,
               ),
-              _GoogleSignInButton(),
+              googleSignInButton(),
               SizedBox(
                 height: 10.0,
               ),
-              _TwitterSignInButton(),
+              twitterSignInButton(),
             ],
           ),
         ),
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _GoogleSignInButton() {
+  Widget googleSignInButton() {
     return OutlineButton(
       splashColor: Colors.pink,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _TwitterSignInButton() {
+  Widget twitterSignInButton() {
     return OutlineButton(
         splashColor: Colors.pink,
         shape:
