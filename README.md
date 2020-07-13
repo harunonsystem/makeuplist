@@ -1,10 +1,10 @@
 # makeup
 
 ## What is it
-This application manage your makeup list and sequence like Todo-list.
+This application can manage your makeup list in order like to-do list.
 
 ## Screenshots
-![](https://github.com/harunonsystem/makeuplist/blob/master/assets/makeuplist20200702.gif?raw=true)
+<img src="https://github.com/harunonsystem/makeuplist/blob/master/assets/makeuplist20200702.gif?raw=true" max-width="480" max-height="360">
 
 
 ### icon
