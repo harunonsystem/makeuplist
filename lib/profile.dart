@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
                 end: Alignment.bottomLeft,
                 colors: [Colors.pinkAccent, Colors.blueAccent])),
         child: Center(
-          child: Column(
+          child: name != null ? Text('no data') : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -49,7 +49,7 @@ class _ProfileState extends State<Profile> {
                 backgroundColor: Colors.transparent,
               ),
               Text(
-                name,
+                name != null ? name: "no data",
                 style: TextStyle(fontSize: 20.0, color: Colors.white),
               ),
               // Text(
@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile> {
               //   style: TextStyle(fontSize: 20.0, color: Colors.white),
               // ),
               Text(
-                email,
+                email != null ? email: "no data",
                 style: TextStyle(fontSize: 20.0, color: Colors.white),
               ),
               SizedBox(
