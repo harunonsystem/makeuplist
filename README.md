@@ -4,7 +4,7 @@
 This application can manage your makeup list in order like to-do list.
 
 ## Screenshots
-<img src="https://github.com/harunonsystem/makeuplist/blob/master/assets/makeuplist20200702.gif?raw=true" max-width="480" max-height="360">
+<img src="https://github.com/harunonsystem/makeuplist/blob/master/assets/makeuplist20200702.gif?raw=true" max-width="480" max-height="180">
 
 
 ### icon
