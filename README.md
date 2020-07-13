@@ -4,7 +4,8 @@
 This application manage your makeup list and sequence like Todo-list.
 
 ## Screenshots
-![](https://github.com/harunonsystem/makeuplist/assets/makeuplist20200702.gif)
+![](https://github.com/harunonsystem/makeuplist/blob/master/assets/makeuplist20200702.gif?raw=true)
+
 
 ### icon
 https://www.flaticon.com/free-icon/cosmetics_130298
