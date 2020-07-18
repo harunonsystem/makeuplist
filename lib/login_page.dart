@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makeup/profile.dart';
 import 'auth.dart';
+import 'home_page.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -40,6 +41,24 @@ class _LoginPageState extends State<LoginPage> {
                 height: 10.0,
               ),
               twitterSignInButton(),
+                              SizedBox(height: 10.0,),
+                RaisedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HomePage()));
+                        },
+                        color: Colors.blue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            'Back to Home',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                      ),
+
             ],
           ),
         ),
