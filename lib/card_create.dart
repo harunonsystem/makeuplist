@@ -39,8 +39,16 @@ class _CreateState extends State<CardCreate> {
   Widget build(BuildContext ctxt) {
     return new Scaffold(
       appBar: AppBar(
-        title: const Text('create test'),
+        backgroundColor: Colors.pinkAccent,
         centerTitle: true,
+        title: Text('MakeupList'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[Colors.blueAccent, Colors.pinkAccent])),
+        ),
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () {},
@@ -57,13 +65,12 @@ class _CreateState extends State<CardCreate> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: addPanel,
+        backgroundColor: Colors.blue,
       ),
       body: new Column(children: <Widget>[
         new Expanded(
           child: Center(
-            child: _image == null
-                ? Text('no data')
-                : Image.file(_image),
+            child: _image == null ? Text('no data') : Image.file(_image),
           ),
         )
       ]),
