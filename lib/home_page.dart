@@ -66,82 +66,144 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Center(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance
-                .collection('users')
-                .document(uid)
-                .collection('list')
-                .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return Center(child: CircularProgressIndicator());
-              } else {
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(80, 10, 80, 10),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('/create');
-                        },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          elevation: 10,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    Colors.pinkAccent,
-                                    Colors.blueAccent
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight),
-                            ),
-                            width: MediaQuery.of(context).size.width / 2,
-                            height: MediaQuery.of(context).size.height / 6,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: ListTile(
-                                leading: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                      maxHeight: 44,
-                                      maxWidth: 44,
-                                      minHeight: 44,
-                                      minWidth: 44),
-                                  child: Image.asset(
-                                    'assets/icon/makeup.png',
-                                    fit: BoxFit.cover,
-                                    color: Colors.white,
+      body: name != null
+          ? Center(
+              child: StreamBuilder<QuerySnapshot>(
+                  stream: Firestore.instance
+                      .collection('users')
+                      .document(uid)
+                      .collection('list')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return ListView.builder(
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(80, 10, 80, 10),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/create');
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
+                                elevation: 10,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Colors.pinkAccent,
+                                          Colors.blueAccent
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight),
                                   ),
-                                ),
-                                title: Text(
-                                  snapshot.data.documents[index]['title']
-                                      .toString(),
-                                  style: TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.center,
-                                ),
-                                subtitle: Text(
-                                  snapshot.data.documents[index]['subtitle']
-                                      .toString(),
-                                  style: TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.center,
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  height:
+                                      MediaQuery.of(context).size.height / 6,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: ListTile(
+                                      leading: ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                            maxHeight: 44,
+                                            maxWidth: 44,
+                                            minHeight: 44,
+                                            minWidth: 44),
+                                        child: Image.asset(
+                                          'assets/icon/makeup.png',
+                                          fit: BoxFit.cover,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      title: Text(
+                                        snapshot.data.documents[index]['title']
+                                            .toString(),
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      subtitle: Text(
+                                        snapshot
+                                            .data.documents[index]['subtitle']
+                                            .toString(),
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                          );
+                        },
+                        itemCount: snapshot.data.documents.length,
+                      );
+                    }
+                  }),
+            )
+          : Center(
+              child: Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/default');
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      elevation: 10,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.pinkAccent,
+                                  Colors.blueAccent
+                                ])),
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 6,
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 24.0,
+                            ),
+                            ListTile(
+                              leading: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                    maxHeight: 44,
+                                    maxWidth: 44,
+                                    minHeight: 44,
+                                    minWidth: 44),
+                                child: Image.asset(
+                                  'assets/icon/makeup.png',
+                                  fit: BoxFit.cover,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              title: Text('Template',
+                                  style: TextStyle(
+                                      fontSize: 24.0, color: Colors.white)),
+                              subtitle: Text(
+                                'This is a test.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                  itemCount: snapshot.data.documents.length,
-                );
-              }
-            }),
-      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (uid != null) {
@@ -161,12 +223,16 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('ユーザー登録が必要になります',
+            title: Text('リストの追加にはユーザー登録が必要になります',
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
             content: RaisedButton(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              child: Text('登録する', style: TextStyle(color: Colors.white),),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: Text(
+                '登録する',
+                style: TextStyle(color: Colors.white),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/root');
               },
