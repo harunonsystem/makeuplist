@@ -25,8 +25,11 @@ Future<String> signInWithGoogle() async {
 
   //add firestore
   FirebaseUser signedUser = user;
-  if(signedUser != null ){
-    Firestore.instance.collection('users').document(signedUser.uid).setData({'name':name, 'email': email, 'imgUrl': imageUrl });
+  if (signedUser != null) {
+    Firestore.instance
+        .collection('users')
+        .document(signedUser.uid)
+        .setData({'name': name, 'email': email, 'imgUrl': imageUrl});
   }
   // Checking if email and name is null
   assert(user.email != null);
@@ -45,6 +48,13 @@ Future<String> signInWithGoogle() async {
 @override
 Future<void> signOutGoogle() async {
   await googleSignIn.signOut();
+  await FirebaseAuth.instance.signOut();
+  await googleSignIn.disconnect();
+  FirebaseUser user;
+  FirebaseUser signedUser = user;
+  if (signedUser != null) {
+    Firestore.instance.collection('users').document(signedUser.uid).delete();
+  }
 
   print("User Sign Out");
 }
