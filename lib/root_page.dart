@@ -6,7 +6,14 @@ import 'package:makeup/profile.dart';
 // landingPage参考に
 //https://medium.com/coding-with-flutter/super-simple-authentication-flow-with-flutter-firebase-737bba04924c
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
+  @override
+  _RootPageState createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  FirebaseUser user;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<FirebaseUser>(

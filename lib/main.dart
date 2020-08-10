@@ -3,6 +3,7 @@ import 'package:makeup/card_create.dart';
 import 'package:makeup/card_default.dart';
 import 'package:makeup/card_detail.dart';
 import 'package:makeup/home_page.dart';
+import 'package:makeup/listview.dart';
 import 'package:makeup/profile.dart';
 import 'package:makeup/root_page.dart';
 import 'login_page.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
             '/login': (BuildContext context) => LoginPage(),
             '/profile': (BuildContext context) => Profile(),
             '/root': (BuildContext context) => RootPage(),
+            '/listview' : (BuildContext context) => ListViewPage(),
           },
         );
   }

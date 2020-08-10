@@ -113,6 +113,7 @@ class _CreateState extends State<CardCreate> {
                     }),
                 SizedBox(
                   width: 20,
+                  height: 30,
                 ),
                 GestureDetector(
                     child: Row(

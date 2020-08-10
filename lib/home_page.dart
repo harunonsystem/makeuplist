@@ -56,15 +56,17 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              Navigator.of(context).pushNamed('/root');
-              // if(FirebaseAuth.instance.currentUser() != null){
-              //   Navigator.of(context).pushNamed('/profile');
-              // }else{
-              //   Navigator.of(context).pushNamed('/login');
-              // }
+              Navigator.of(context).pushNamed('/profile');
+              // Navigator.of(context).pushNamed('/root');
             },
           )
         ],
+        leading: IconButton(
+          icon: Icon(Icons.favorite),
+          onPressed: () {
+            Navigator.of(context).pushNamed('/listview');
+          },
+        ),
       ),
       body: name != null
           ? Center(
@@ -206,7 +208,7 @@ class _HomePageState extends State<HomePage> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (uid != null) {
+          if (name != null) {
             return _createDialog();
           } else {
             return _needLogin();
@@ -215,6 +217,19 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
         backgroundColor: Colors.pinkAccent,
       ),
+      bottomNavigationBar: BottomAppBar(
+          color: Colors.black54,
+          child: name != null
+              ? Text(
+                  'name: ' + name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                )
+              : Text(
+                  'name: null',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                )),
     );
   }
 
