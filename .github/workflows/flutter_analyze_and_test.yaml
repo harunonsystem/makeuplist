@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: sample test sensuikan1973
+    name: sample test 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -22,7 +22,8 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test --verbose --coverage --coverage-path=~/coverage/lcov.info
-      - uses: codecov/codecov-action@v1.0.2
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.13
         with:
           token: ${{secrets.CODECOV_TOKEN}}
           file: ~/coverage/lcov.info
