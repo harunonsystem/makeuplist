@@ -29,31 +29,5 @@ class RootPage extends StatelessWidget {
         return Profile();
       },
     );
-    // var _user = Provider.of<AuthService>(context);
-    // return ChangeNotifierProvider(
-    //   create: (_) => AuthService.instance(),
-    //   child: user != null ? Profile() : LoginPage(),
-    // );
-
-    // return StreamBuilder<FirebaseUser>(
-    //   stream: FirebaseAuth.instance.onAuthStateChanged,
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.active) {
-    //       print('user:' + _user.uid);
-    //       if (_user != null) {
-    //         return Profile(user: _user);
-    //       } else {
-    //         print('user:' + _user.displayName);
-    //         return LoginPage();
-    //       }
-    //     } else {
-    //       return Scaffold(
-    //         body: Center(
-    //           child: CircularProgressIndicator(),
-    //         ),
-    //       );
-    //     }
-    //   },
-    // );
   }
 }

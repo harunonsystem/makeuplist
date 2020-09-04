@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:makeup/profile.dart';
+import 'package:makeup/provider/provider_auth.dart';
+import 'package:provider/provider.dart';
 import 'home_page.dart';
 import 'makeupAppbar.dart';
 
@@ -54,33 +57,38 @@ class Login extends StatelessWidget {
   }
 
   Widget googleSignInButton() {
-    return OutlineButton(
-      splashColor: Colors.pink,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.pink),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Text(
-                'Sign In with Google',
-                style: TextStyle(fontSize: 20, color: Colors.pink),
-              ),
+    return Consumer(
+      builder: (context, AuthService authService, _) {
+        return OutlineButton(
+          splashColor: Colors.pink,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          highlightElevation: 0,
+          borderSide: BorderSide(color: Colors.pink),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Sign In with Google',
+                    style: TextStyle(fontSize: 20, color: Colors.pink),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      onPressed: () async {
-        // signInWithGoogle().whenComplete(() {
-        //   Provider.of(context).push(MaterialPageRoute(
-        //     builder: (context) => Profile(),
-        //   ));
-        // });
+          ),
+          onPressed: () async {
+            authService.signInWithGoogle().whenComplete(() {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Profile(),
+              ));
+            });
+          },
+        );
       },
     );
   }

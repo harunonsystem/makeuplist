@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
             icon: Icon(Icons.person),
             onPressed: () {
               Navigator.of(context).pushNamed('/root');
-              // Navigator.of(context).pushNamed('/root');
             },
           )
         ],

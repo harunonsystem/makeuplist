@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:makeup/root_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 
-import 'home_page.dart';
-
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
