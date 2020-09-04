@@ -88,6 +88,7 @@ class _CreateState extends State<CardCreate> {
                     items.add(text);
                     title.clear();
                     setState(() {});
+                    Navigator.pop(context);
                   },
                   decoration: InputDecoration(
                     hintText: 'input title...',
@@ -144,5 +145,6 @@ class _CreateState extends State<CardCreate> {
                 ),
               ])));
         });
+        
   }
 }

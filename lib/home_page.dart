@@ -1,44 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:provider/provider.dart';
 
-import 'auth.dart';
+class HomePage extends StatelessWidget {
+//   final FirebaseUser user;
+//   HomePage({Key key, this.user}) : super(key: key);
 
-class Splash extends StatefulWidget {
-  @override
-  _SplashState createState() => _SplashState();
-}
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
 
-class _SplashState extends State<Splash> {
-  @override
-  Widget build(BuildContext context) {
-    return new SplashScreen(
-      seconds: 3,
-      navigateAfterSeconds: new HomePage(),
-      title: const Text(
-        'Welcome to MakeupList',
-        style: TextStyle(color: Colors.pinkAccent, fontSize: 24.0),
-      ),
-      image: Image.asset('assets/icon/eye-makeup.png'),
-      backgroundColor: Colors.white,
-      photoSize: 180.0,
-      loaderColor: Colors.pinkAccent,
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  final FirebaseUser user;
-  HomePage({Key key, this.user}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+// class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<FirebaseUser>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
@@ -56,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              Navigator.of(context).pushNamed('/profile');
+              Navigator.of(context).pushNamed('/root');
               // Navigator.of(context).pushNamed('/root');
             },
           )
@@ -68,12 +44,12 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      body: name != null
+      body: user != null
           ? Center(
               child: StreamBuilder<QuerySnapshot>(
                   stream: Firestore.instance
                       .collection('users')
-                      .document(uid)
+                      .document(user.email)
                       .collection('list')
                       .snapshots(),
                   builder: (BuildContext context,
@@ -208,20 +184,20 @@ class _HomePageState extends State<HomePage> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (name != null) {
-            return _createDialog();
-          } else {
-            return _needLogin();
-          }
+          // if (name != null) {
+          //   return _createDialog();
+          // } else {
+          //   return _needLogin();
+          // }
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.pinkAccent,
       ),
       bottomNavigationBar: BottomAppBar(
           color: Colors.black54,
-          child: name != null
+          child: user != null
               ? Text(
-                  'name: ' + name,
+                  'name: ' + user.email,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 )
@@ -233,85 +209,85 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _needLogin() async {
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('リストの追加にはユーザー登録が必要になります',
-                style:
-                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
-            content: RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: Text(
-                '登録する',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/root');
-              },
-              color: Colors.pinkAccent,
-            ),
-          );
-        });
-  }
+//   _needLogin() async {
+//     await showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: Text('リストの追加にはユーザー登録が必要になります',
+//                 style:
+//                     TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+//             content: RaisedButton(
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(10.0)),
+//               child: Text(
+//                 '登録する',
+//                 style: TextStyle(color: Colors.white),
+//               ),
+//               onPressed: () {
+//                 Navigator.pushNamed(context, '/profile');
+//               },
+//               color: Colors.pinkAccent,
+//             ),
+//           );
+//         });
+//   }
 
-  _createDialog() async {
-    TextEditingController listTitleController = TextEditingController();
-    TextEditingController listSubtitleController = TextEditingController();
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'リストのタイトルを入力✌️',
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
-            content: Builder(builder: (context) {
-              var height = MediaQuery.of(context).size.height / 6;
-              var width = MediaQuery.of(context).size.width / 2;
-              return Container(
-                height: height,
-                width: width,
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      controller: listTitleController,
-                      decoration: InputDecoration(hintText: 'list title...'),
-                    ),
-                    TextFormField(
-                      controller: listSubtitleController,
-                      decoration: InputDecoration(hintText: 'list subtitle...'),
-                    ),
-                  ],
-                ),
-              );
-            }),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('OK'),
-                onPressed: () {
-                  print(listTitleController.text);
-                  print(listSubtitleController.text);
-                  // Firestore.instance
-                  //     .collection('users')
-                  //     .document(uid)
-                  //     .collection('list')
-                  //     .add({
-                  //   'title': listTitleController.text,
-                  //   'subtitle': listSubtitleController.text,
-                  // });
-                  Navigator.pop(context);
-                },
-              )
-            ],
-          );
-        });
-  }
-}
-// GestureDetector(
-//     onTap: () {
+//   _createDialog() async {
+//     TextEditingController listTitleController = TextEditingController();
+//     TextEditingController listSubtitleController = TextEditingController();
+//     await showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: Text(
+//               'リストのタイトルを入力✌️',
+//               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+//             ),
+//             content: Builder(builder: (context) {
+//               var height = MediaQuery.of(context).size.height / 6;
+//               var width = MediaQuery.of(context).size.width / 2;
+//               return Container(
+//                 height: height,
+//                 width: width,
+//                 child: Column(
+//                   children: <Widget>[
+//                     TextFormField(
+//                       controller: listTitleController,
+//                       decoration: InputDecoration(hintText: 'list title...'),
+//                     ),
+//                     TextFormField(
+//                       controller: listSubtitleController,
+//                       decoration: InputDecoration(hintText: 'list subtitle...'),
+//                     ),
+//                   ],
+//                 ),
+//               );
+//             }),
+//             actions: <Widget>[
+//               FlatButton(
+//                 child: Text('OK'),
+//                 onPressed: () {
+//                   print(listTitleController.text);
+//                   print(listSubtitleController.text);
+//                   // Firestore.instance
+//                   //     .collection('users')
+//                   //     .document(uid)
+//                   //     .collection('list')
+//                   //     .add({
+//                   //   'title': listTitleController.text,
+//                   //   'subtitle': listSubtitleController.text,
+//                   // });
+//                   Navigator.pop(context);
+//                 },
+//               )
+//             ],
+//           );
+//         });
+//   }
+// }
+// // GestureDetector(
+// //     onTap: () {
 //       Navigator.of(context).pushNamed('/create');
 //     },
 //     child: Card(
@@ -344,3 +320,4 @@ class _HomePageState extends State<HomePage> {
 //                 ),
 //               ],
 //             ))))
+}
