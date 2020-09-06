@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
               child: StreamBuilder<QuerySnapshot>(
                   stream: Firestore.instance
                       .collection('users')
-                      .document(user.email)
+                      .document(user.uid)
                       .collection('list')
                       .snapshots(),
                   builder: (BuildContext context,

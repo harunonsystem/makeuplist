@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:makeup/root_page.dart';
+import 'package:makeup/home_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class Splash extends StatelessWidget {
@@ -7,7 +7,7 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     return new SplashScreen(
       seconds: 3,
-      navigateAfterSeconds: new RootPage(),
+      navigateAfterSeconds: new HomePage(),
       title: const Text(
         'Welcome to MakeupList',
         style: TextStyle(color: Colors.pinkAccent, fontSize: 24.0),
