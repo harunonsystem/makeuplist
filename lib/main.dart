@@ -5,12 +5,12 @@ import 'package:makeup/card_create.dart';
 import 'package:makeup/card_default.dart';
 import 'package:makeup/card_detail.dart';
 import 'package:makeup/listview.dart';
+import 'package:makeup/login.dart';
 import 'package:makeup/profile.dart';
 import 'package:makeup/provider/provider_auth.dart';
 import 'package:makeup/root_page.dart';
 import 'package:makeup/splash_page.dart';
 import 'package:provider/provider.dart';
-import 'login_page.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;
@@ -34,12 +34,13 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData.light(),
         home: Splash(),
-        initialRoute: '/root',
+        // '/' is home_page.dart
+        initialRoute: '/',
         routes: <String, WidgetBuilder>{
           '/create': (BuildContext context) => CardCreate(),
           '/detail': (BuildContext context) => CardDetail(),
           '/default': (BuildContext context) => CardDefault(),
-          '/login': (BuildContext context) => LoginPage(),
+          '/login': (BuildContext context) => Login(),
           '/profile': (BuildContext context) => Profile(),
           '/root': (BuildContext context) => RootPage(),
           '/listview': (BuildContext context) => ListViewPage(),
