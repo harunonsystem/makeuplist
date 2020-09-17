@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import Firebase
+import FirebaseCrashlytics
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
